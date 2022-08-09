@@ -8,14 +8,14 @@ public static class Program
     {
         try 
         {
-            var manager = new SQLConnectionManager();
+            using var manager = new SQLConnectionManager();
             var app = new Application(manager);
             await app.RunAsync();
         }
-        catch(Exception e )
+        catch(Exception e)
         {
             Console.WriteLine(e.Message);
-            throw e;
+            throw;
         }
     }
 }

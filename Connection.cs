@@ -1,34 +1,33 @@
-namespace async_local
+namespace async_local;
+
+public interface IConnection : IDisposable
 {
-    public interface IConnection : IDisposable
+    string ID { get; }
+    void Open();
+    void Close();
+}
+
+public class Connection : IConnection
+{
+    public string ID { get; }
+
+    public Connection()
     {
-        public string ID { get; }
-        void Open();
-        void Close();
+        this.ID = Guid.NewGuid().ToString();
     }
 
-    public class Connection : IConnection
+    public void Close()
     {
-        public string ID { get; }
+        Console.WriteLine($"Closing Conn - {this.ID}");
+    }
 
-        public Connection()
-        {
-            this.ID = Guid.NewGuid().ToString();
-        }
+    public void Dispose()
+    {
+        this.Close();
+    }
 
-        public void Close()
-        {
-            Console.WriteLine($"Closing conn - {this.ID}");
-        }
-
-        public void Dispose()
-        {
-            this.Close();
-        }
-
-        public void Open()
-        {
-            Console.WriteLine($"Opening conn - {this.ID}");
-        }
+    public void Open()
+    {
+        Console.WriteLine($"Opening new Conn - {this.ID}");
     }
 }
