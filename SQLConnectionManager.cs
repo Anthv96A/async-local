@@ -2,7 +2,7 @@ namespace async_local;
 
 public interface IConnectionManager : IDisposable 
 {
-    public IConnection GetCurrentConnection { get; }
+    IConnection GetCurrentConnection { get; }
     
     IConnection GetConnection();
 }
